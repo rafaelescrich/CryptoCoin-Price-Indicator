@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=CryptoCoin Indicator
+GenericName=CryptoCoin Indicator
+Comment=CryptoCoin Price Indicator
+Encoding=UTF-8
+Version=1.0
+
+
+Name[en_US]=CryptoCoinIndicator
+Exec=/home/rafael/CryptoCoin-Price-Indicator/cryptocoin-price-indicator.py
+Icon=/home/rafael/CryptoCoin-Price-Indicator/res/bitcoinicon.png
+Categories=Internet;
+Type=Application
+Terminal=false
+X-Ayatana-Desktop-Shortcuts=Regular;
+Name[en_US]=CryptoCoin Indicator
+ 
