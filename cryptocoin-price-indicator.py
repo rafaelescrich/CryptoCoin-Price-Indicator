@@ -87,6 +87,7 @@ class CryptoCoinPriceIndicator:
     def menu_setupLTC(self):
         self.menuLTC = gtk.Menu()
         self.LTCtickers = None
+
         self.bitfinexLTC = gtk.RadioMenuItem(self.LTCtickers,"Bitfinex"); self.bitfinexLTC.connect("activate", lambda x: self.toggleLTCdisplay("bitfinex")); self.bitfinexLTC.show()
         self.LTCtickers = self.bitfinexLTC
 
@@ -169,7 +170,7 @@ class CryptoCoinPriceIndicator:
             dataOut = dataOut + "Bitstamp: "+priceNow
         self.bitstampBTC.set_label("Bitstamp | "+str(priceNow))
 
-        priceNow = self.getBitfinexBTCPrice()
+        priceNow = self.getBitfinexUSDData("btc")
         if priceNow == BAD_RETRIEVE:
             priceNow = "TempDown"
         else:
@@ -187,7 +188,7 @@ class CryptoCoinPriceIndicator:
         dataOut = ""
         priceNow = BAD_RETRIEVE
 
-        priceNow = self.getBitfinexUSD("ltc")
+        priceNow = self.getBitfinexUSDData("ltc")
         if priceNow == BAD_RETRIEVE:
             priceNow = "TempDown"
         else:
@@ -196,12 +197,12 @@ class CryptoCoinPriceIndicator:
             dataOut = dataOut + ' | ' if dataOut != "" else dataOut
             dataOut = dataOut + "Bitfinex: "+priceNow
         self.bitfinexLTC.set_label("Bitfinex | "+str(priceNow))
-        if self.LTCMODE:
-            self.indLTC.set_label(dataOut)
+
+        self.ind.set_label(dataOut)
         return True
 
 
-    def getBitfinexUSD(self,coin):
+    def getBitfinexUSDData(self,coin):
         lstBitfinex = BAD_RETRIEVE
         try :
             if coin is "ltc":
@@ -230,21 +231,6 @@ class CryptoCoinPriceIndicator:
         except ValueError:  # includes simplejson.decoder.JSONDecodeError
             print 'Decoding JSON has failed'
         return "{0:,.2f}".format(float(lstBitStamp))
-    
-    # get Bitfinex data using json
-    def getBitfinexBTCPrice(self):
-        lstBitfinex = BAD_RETRIEVE
-        try :
-            web_page = urllib2.urlopen("https://api.bitfinex.com/v1/pubticker/btcusd").read()
-            data = json.loads(web_page)
-            lstBitfinex = data['last_price']
-        except urllib2.HTTPError :
-            print("HTTPERROR!")
-        except urllib2.URLError :
-            print("URLERROR!")
-        except ValueError:  # includes simplejson.decoder.JSONDecodeError
-            print 'Decoding JSON has failed'
-        return "{0:,.2f}".format(float(lstBitfinex))
 
 
     #############################################
