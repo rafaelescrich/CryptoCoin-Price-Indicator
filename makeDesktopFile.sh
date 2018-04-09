@@ -24,5 +24,3 @@ echo "Terminal=false" >> cryptocoin-price-indicator.desktop
 echo "X-Ayatana-Desktop-Shortcuts=Regular;" >> cryptocoin-price-indicator.desktop
 echo "Name[en_US]=CryptoCoin Indicator" >> cryptocoin-price-indicator.desktop
 echo " " >> cryptocoin-price-indicator.desktop
-
-
