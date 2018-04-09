@@ -11,9 +11,6 @@ HOME = expanduser("~")
 USERNAME = ospath.split(HOME)[-1] 
 ICON = os.path.abspath(HOME+"/.local/share/applications/bitcoinicon.png")
 LTCICON = os.path.abspath(HOME+"/.local/share/applications/litecoinicon.png")
-NMCICON = os.path.abspath(HOME+"/.local/share/applications/nmcicon.png")
-PPCICON = os.path.abspath(HOME+"/.local/share/applications/peercoinicon.png")
-YACICON = os.path.abspath(HOME+"/.local/share/applications/yacoinicon.png")
 SETTINGSFILE = os.path.abspath(HOME+"/.local/share/applications/settingsCryptoIndicator.dat")
 INDICATORFILE = os.path.abspath(HOME+"/.local/share/applications/cryptocoin-price-indicator.py")
 AUTODESKTOPFILE = os.path.abspath(HOME+"/.config/autostart/cryptocoin-price-indicator.desktop")
@@ -27,7 +24,7 @@ if "emove" in removeIn.lower().strip():
     print "Removing from system."
 
 if removePack:
-    FILES = [ICON,LTCICON,NMCICON,PPCICON,YACICON, SETTINGSFILE, INDICATORFILE, AUTODESKTOPFILE, DESKTOPFILE]
+    FILES = [ICON,LTCICON, SETTINGSFILE, INDICATORFILE, AUTODESKTOPFILE, DESKTOPFILE]
     for FILE in FILES:
         if os.path.exists(FILE):
             os.remove(FILE)
@@ -62,9 +59,6 @@ else:
                 print "Making folder:",dirApp+"/res/"
             ICON = os.path.abspath(dirApp+"/res/bitcoinicon.png")
             LTCICON = os.path.abspath(dirApp+"/res/litecoinicon.png")
-            NMCICON = os.path.abspath(dirApp+"/res/nmcicon.png")
-            PPCICON = os.path.abspath(dirApp+"/res/peercoinicon.png")
-            YACICON = os.path.abspath(dirApp+"/res/yacoinicon.png")
             INDICATORFILE = os.path.abspath(dirApp+"/cryptocoin-price-indicator.py")
 
         else:
@@ -81,9 +75,6 @@ else:
 
         iconTemp = dirIn+"/res/bitcoinicon.png"
         iconLTCTemp = dirIn+"/res/litecoinicon.png"
-        iconNMCTemp = dirIn+"/res/nmcicon.png"
-        iconPPCTemp = dirIn+"/res/peercoinicon.png"
-        iconYACTemp = dirIn+"/res/yacoinicon.png"
         indTemp = dirIn+"/cryptocoin-price-indicator.py"
         deskTemp = dirIn+"/cryptocoin-price-indicator.desktop"
         settingsTemp = dirIn+"/res/settingsCryptoIndicator.dat"
@@ -112,27 +103,6 @@ else:
             print 'Moving ltc icon to',LTCICON
         except IOError:
             print 'Error moving ltc icon.'
-
-        #Try moving nmc icon
-        try:
-            shutil.copyfile(iconNMCTemp,NMCICON)
-            print 'Moving nmc icon to',NMCICON
-        except IOError:
-            print 'Error moving nmc icon.'
-
-        #Try moving ppc icon
-        try:
-            shutil.copyfile(iconPPCTemp,PPCICON)
-            print 'Moving ppc icon to',PPCICON
-        except IOError:
-            print 'Error moving ppc icon.'
-
-        #Try moving yac icon
-        try:
-            shutil.copyfile(iconYACTemp,YACICON)
-            print 'Moving yac icon to',YACICON
-        except IOError:
-            print 'Error moving yac icon.'
 
         #Try moving indicator
         try:
@@ -170,16 +140,10 @@ else:
         file = open(SETTINGSFILE, 'w')
         file.write(dirApp+' \n')
         file.write('10 \n')
-        file.write('mtgox \n')
+        file.write('bitfinex \n')
         file.write('True \n')
-        file.write('btce \n')
+        file.write('bitstamp \n')
         file.write('True \n')
-        file.write('btce \n')
-        file.write('False \n')
-        file.write('btce \n')
-        file.write('False \n')
-        file.write('bter \n')
-        file.write('False \n')
         file.close()
     except IOError:
         print "IO ERROR"
